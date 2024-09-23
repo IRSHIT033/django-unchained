@@ -3,12 +3,9 @@
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.decorators import action
-from rest_framework.exceptions import PermissionDenied
 from .models import Project
 from .serializers import ProjectSerializer, ProjectCreateSerializer
 from rest_framework import status
-from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from .permissions import IsOwnerOrContributor
 
@@ -32,8 +29,11 @@ class ProjectDetailView(APIView):
         """
         GET: Retrieve a project by ID.
         """
-        # Fetch project with related contributors and tasks in a single query
-        project = Project.objects.prefetch_related('contributors',  'tasks__assigned_to').select_related('owner').get(id=project_id)
+        # Fetch project with related contributors and tasks in a single query show 404 if not found
+        try:
+            project =  Project.objects.prefetch_related('contributors',  'tasks__assigned_to').select_related('owner').get(id=project_id)
+        except Project.DoesNotExist:
+            return Response({"error": "Project not found"}, status=status.HTTP_404_NOT_FOUND)
             
         # Check if the user has permission to access the project
         self.check_object_permissions(request, project)
