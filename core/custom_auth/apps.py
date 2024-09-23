@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AuthRegisterConfig(AppConfig):
+class CustomAuthConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'register'
+    name = 'custom_auth'

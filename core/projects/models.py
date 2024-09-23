@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from register.models import CustomUser
+from custom_auth.models import CustomUser
 
 class Project(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

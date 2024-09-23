@@ -22,7 +22,6 @@ class ProjectView(APIView):
 
     def post(self, request):
         data = request.data
-        data['owner'] = request.user.id
         print(request.user.id)
         # serializer = self.get_serializer(data=data)
         # serializer.is_valid(raise_exception=True)
