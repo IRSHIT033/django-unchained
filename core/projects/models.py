@@ -15,8 +15,8 @@ class Task(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     project = models.ForeignKey(Project, related_name='tasks', on_delete=models.CASCADE)
-    assigned_to = models.ForeignKey(CustomUser, related_name='assigned_tasks', on_delete=models.SET_NULL, null=True)
-    completed = models.BooleanField(default=False)
+    assigned_to = models.ForeignKey(CustomUser, related_name='assigned_task', on_delete=models.SET_NULL, null=True)
+    status = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
