@@ -1,8 +1,8 @@
 import uuid
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import PermissionsMixin
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
         if not email:
@@ -21,12 +21,11 @@ class CustomUserManager(BaseUserManager):
 
 
 # Create your models here.
-class CustomUser(AbstractBaseUser):
+class CustomUser(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     username = models.CharField(max_length=100, unique=True)
     email = models.EmailField(max_length=254, unique=True)
     created_at = models.DateTimeField(default=timezone.now)
-    
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)

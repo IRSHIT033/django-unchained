@@ -53,6 +53,13 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': os.getenv('REDIS_LOCATION'),
+    }
+}
+
 REST_FRAMEWORK = {
    'DEFAULT_AUTHENTICATION_CLASSES': (
        'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -70,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -137,6 +145,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
+# Configure the toolbar
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.cache.CachePanel',
+    # other panels
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

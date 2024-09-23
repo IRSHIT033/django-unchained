@@ -8,6 +8,7 @@ from .serializers import ProjectSerializer, ProjectCreateSerializer
 from rest_framework import status
 from django.db.models import Q
 from .permissions import IsOwnerOrContributor
+from django.core.cache import cache
 
 class ProjectCreateView(APIView):
     permission_classes = [IsAuthenticated]
@@ -31,7 +32,10 @@ class ProjectDetailView(APIView):
         """
         # Fetch project with related contributors and tasks in a single query show 404 if not found
         try:
-            project =  Project.objects.prefetch_related('contributors',  'tasks__assigned_to').select_related('owner').get(id=project_id)
+            project = cache.get(f'project_{project_id}')
+            if not project:
+                project =  Project.objects.prefetch_related('contributors',  'tasks__assigned_to').select_related('owner').get(id=project_id)
+                cache.set(f'project_{project_id}', project)
         except Project.DoesNotExist:
             return Response({"error": "Project not found"}, status=status.HTTP_404_NOT_FOUND)
             
