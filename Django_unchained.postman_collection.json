@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "0a72f70b-fc4f-4262-886c-74207553c798",
+		"name": "Django_unchained",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17108835",
+		"_collection_link": "https://x-inventory.postman.co/workspace/x-inventory-Workspace~53a12400-1309-4bc0-80b3-ec6320858f24/collection/17108835-0a72f70b-fc4f-4262-886c-74207553c798?action=share&source=collection_link&creator=17108835"
+	},
+	"item": [
+		{
+			"name": "CreateProject",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MTE2MTAzLCJpYXQiOjE3MjcxMTI1MDMsImp0aSI6ImI0NmFjZTZlMTNkYzRhMWNiMzVmNTAxMTE0ODhiYThlIiwidXNlcl9pZCI6IjAxZjQwZDlmLTQ2NTQtNDVmZi1hZmEwLTdhMmI3MWQ2NTJkMyJ9.TOVxYa3t6o6SlmlII1A67LQDY0YESvO3jOORAQm0KlM"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"devops\",\r\n    \"description\":\"good project\",\r\n    \"tasks\":[{\r\n        \"title\":\"MQ\",\r\n        \"description\":\"make navbar\",\r\n        \"status\":\"done\",\r\n        \"assigned_to\":\"16a3a892-2148-40be-a855-05ff6dafb443\"\r\n    }],\r\n    \"contributors_ids\":[\r\n       \"16a3a892-2148-40be-a855-05ff6dafb443\",\r\n       \"855ca501-19cb-40cb-9af7-cab0cc1ab3f4\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/projects"
+			},
+			"response": []
+		},
+		{
+			"name": "get_tokens",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"irshit\",\r\n    \"email\":\"irshit@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/auth/token/"
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"irshit\",\r\n    \"email\":\"irshit@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "getProjectById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MTIwNDMyLCJpYXQiOjE3MjcxMTY4MzIsImp0aSI6IjQwZTMwYzA3ZWEyMzRmZjVhZGQzNzY4YjYyMWEzN2U3IiwidXNlcl9pZCI6IjAxZjQwZDlmLTQ2NTQtNDVmZi1hZmEwLTdhMmI3MWQ2NTJkMyJ9.OvFTeFqKwIU856Gi_kRExe30ba1291B9_2SLWE-DaXg"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/api/projects/0f2c57dc-1d7a-4557-905b-b460e55cfd50"
+			},
+			"response": []
+		},
+		{
+			"name": "getallProjects",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MTE2MTAzLCJpYXQiOjE3MjcxMTI1MDMsImp0aSI6ImI0NmFjZTZlMTNkYzRhMWNiMzVmNTAxMTE0ODhiYThlIiwidXNlcl9pZCI6IjAxZjQwZDlmLTQ2NTQtNDVmZi1hZmEwLTdhMmI3MWQ2NTJkMyJ9.TOVxYa3t6o6SlmlII1A67LQDY0YESvO3jOORAQm0KlM"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/api/projects/list"
+			},
+			"response": []
+		},
+		{
+			"name": "GetAccessToken",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": ""
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"refresh\":  \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyNzIwNDM2MCwiaWF0IjoxNzI3MTE3OTYwLCJqdGkiOiIyMTdlOThhYWZkYmM0NTRkOTcwZTJjYTMwOWE4N2YxOCIsInVzZXJfaWQiOiIwMWY0MGQ5Zi00NjU0LTQ1ZmYtYWZhMC03YTJiNzFkNjUyZDMifQ.Bz-2R-Pk3ZqbkHhWctK6n3q06vpZAJxo3uCGIZqPgNk\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8000/api/auth/token/refresh"
+			},
+			"response": []
+		}
+	]
+}
